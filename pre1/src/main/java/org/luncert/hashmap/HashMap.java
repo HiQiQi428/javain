@@ -34,20 +34,27 @@ public class HashMap<K,V> implements Map<K,V> {
 			this.next = next;
 		}
 
-		@Override
 		public K getKey() { return key; }
 
-		@Override
 		public V getValue() { return value; }
 
-		@Override
 		public V setValue(V value) {
 			V oldValue = this.value;
 			this.value = value;
 			return oldValue;
 		}
 
-		@Override
+		public Node<K,V> find(int hash, Object key) {
+			if (key != null) {
+				Node<K,V> node = this;
+				do {
+					if (node.hash == hash && node.key.equals(key))
+						return node;
+				} while ((node = node.next) != null);
+			}
+			return null;
+		}
+
 		public String toString() {
 			return key + "=" + value;
 		}
@@ -119,26 +126,14 @@ public class HashMap<K,V> implements Map<K,V> {
 
 	@Override
 	public V get(Object key) {
-		if (size > 0) {
-			Node<K,V> node = getNode(key);
-			return (node == null) ? null : node.value;
-		}
-		return null;
+		Node<K,V> node = getNode(key);
+		return (node == null) ? null : node.value;
 	}
 
 	private Node<K,V> getNode(Object key) {
 		int hash = hash(key);
 		int index = (capacity - 1) & hash;
-		if (table[index] != null) {
-			Node<K,V> node = table[index];
-			do {
-				if (node.hash == hash && key.equals(node.key))
-					return node;
-				node = node.next;
-			}
-			while (node != null);
-		}
-		return null;
+		return (table[index] == null) ? null : table[index].find(hash, key);
 	}
 
 	@Override
