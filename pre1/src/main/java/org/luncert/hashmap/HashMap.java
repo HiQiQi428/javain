@@ -1,8 +1,13 @@
 package org.luncert.hashmap;
 
+import java.util.AbstractCollection;
+import java.util.AbstractSet;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class HashMap<K,V> implements Map<K,V> {
 
@@ -202,22 +207,6 @@ public class HashMap<K,V> implements Map<K,V> {
         }
 	}
 
-	@Override
-	public Set<K> keySet() {
-		return null;
-	}
-
-	@Override
-	public Collection<V> values() {
-		return null;
-	}
-
-	@Override
-	public Set<Entry<K, V>> entrySet() {
-		return null;
-	}
-
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < table.length && table[i] != null; i++)
@@ -225,5 +214,105 @@ public class HashMap<K,V> implements Map<K,V> {
 				builder.append(tmp).append('\n');
 		return builder.toString();
 	}
-    
+
+	public Set<K> keySet() { return new KeySet(); }
+
+	public Collection<V> values() { return new Values(); }
+
+	public Set<Entry<K, V>> entrySet() { return new EntrySet(); }
+
+	final class KeySet extends AbstractSet<K> {
+
+		public Iterator<K> iterator() { return new KeyIterator(); }
+
+		public final int size() { return size; }
+
+		public final void clear() { HashMap.this.clear(); }
+
+	}
+
+	final class Values extends AbstractCollection<V> {
+
+		public final Iterator<V> iterator() { return new ValueIterator(); }
+		public final int size() { return size; }
+		public final void clear() { HashMap.this.clear(); }
+		public final boolean contains(Object o) { return containsValue(o); }
+        public final void forEach(Consumer<? super V> action) {
+			if (action == null)
+				throw new NullPointerException();
+            if (size > 0 && table != null) {
+                for (int i = 0; i < table.length; ++i) {
+                    for (Node<K,V> node = table[i]; node != null; node = node.next)
+                        action.accept(node.value);
+                }
+            }
+		}
+		
+	}
+
+	final class EntrySet extends AbstractSet<Map.Entry<K,V>> {
+
+		public Iterator<Entry<K, V>> iterator() { return new EntrySetIterator(); }
+
+		public int size() { return size; }
+
+	}
+
+	abstract class HashIterator {
+		int index = -1;
+		Node<K,V> current, next;
+
+		HashIterator() {
+			current = getNode();
+			next = getNext();
+		}
+
+		final Node<K,V> getNode() {
+			Node<K,V> node = null;
+			for (index++; index < size && (node = table[index]) == null; index++);
+			return node;
+		}
+
+		final Node<K,V> getNext() {
+			if (current != null && current.next != null)
+				return current.next;
+			else
+				return getNode();
+		}
+
+		final Node<K,V> nextNode() {
+			if (current == null)
+				throw new NoSuchElementException();
+			Node<K,V> node = current;
+			current = next;
+			next = getNext();
+			return node;
+		}
+
+	}
+
+	final class KeyIterator extends HashIterator implements Iterator<K> {
+
+		public boolean hasNext() { return current != null; }
+
+		public K next() { return nextNode().key; }
+
+	}
+
+	final class ValueIterator extends HashIterator implements Iterator<V> {
+
+		public boolean hasNext() { return current != null; }
+
+		public V next() { return nextNode().value; }
+
+	}
+
+	final class EntrySetIterator extends HashIterator implements Iterator<Map.Entry<K,V>> {
+
+		public boolean hasNext() { return current != null; }
+
+		public Entry<K, V> next() { return nextNode(); }
+
+	}
+
 }
