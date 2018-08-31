@@ -14,42 +14,6 @@ public class HashMap<K,V> implements Map<K,V> {
 	float loadFactor = DEFAULT_LOADFACTOR;
 	int threshold = (int) (capacity * loadFactor);
 	int size = 0;
-	
-	private int hash(K key) {
-		int h;
-		return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
-	}
-
-	@SuppressWarnings("unchecked")
-	private void resize() {
-		if (table == null || table.length == 0)
-			table = (Node<K,V>[]) new Node[capacity];
-		else {
-			capacity <<= 1;
-			threshold <<= 1;
-			Node<K,V>[] oldTable = table;
-			table = (Node<K,V>[]) new Node[capacity];
-			// 拷贝元素
-			for (int i = 0; i < oldTable.length; i++) {
-				Node<K,V> tmp = oldTable[i];
-				if (oldTable[i] != null) {
-					oldTable[i] = null;
-					for (; tmp != null; tmp = tmp.next) {
-						int hash = tmp.hash;
-						int index = (capacity - 1) & hash;
-						if (table[index] == null)
-							table[index] = tmp;
-						else {
-							Node<K,V> e = table[index];
-							while (e.next != null)
-								e = e.next;
-							e.next = tmp;
-						}
-					}
-				}
-			}
-		}
-	}
 
     static class Node<K,V> implements Map.Entry<K,V> {
 
@@ -91,18 +55,84 @@ public class HashMap<K,V> implements Map<K,V> {
 	@Override
 	public boolean isEmpty() { return size == 0; }
 
+	
+	private int hash(Object key) {
+		int h;
+		return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void resize() {
+		if (table == null || table.length == 0)
+			table = (Node<K,V>[]) new Node[capacity];
+		else {
+			capacity <<= 1;
+			threshold <<= 1;
+			Node<K,V>[] oldTable = table;
+			table = (Node<K,V>[]) new Node[capacity];
+			// 拷贝元素
+			for (int i = 0; i < oldTable.length; i++) {
+				Node<K,V> tmp = oldTable[i];
+				if (oldTable[i] != null) {
+					oldTable[i] = null;
+					for (; tmp != null; tmp = tmp.next) {
+						int hash = tmp.hash;
+						int index = (capacity - 1) & hash;
+						if (table[index] == null)
+							table[index] = tmp;
+						else {
+							Node<K,V> e = table[index];
+							while (e.next != null)
+								e = e.next;
+							e.next = tmp;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	@Override
 	public boolean containsKey(Object key) {
-		return false;
+		return getNode(key) != null;
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
+		if (size > 0) {
+			for (int i = 0; i < table.length; i++) {
+				Node<K,V> node = table[i];
+				while (node != null) {
+					if (node.value.equals(value))
+						return true;
+					node = node.next;
+				}
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public V get(Object key) {
+		if (size > 0) {
+			Node<K,V> node = getNode(key);
+			return (node == null) ? null : node.value;
+		}
+		return null;
+	}
+
+	private Node<K,V> getNode(Object key) {
+		int hash = hash(key);
+		int index = (capacity - 1) & hash;
+		if (table[index] != null) {
+			Node<K,V> node = table[index];
+			do {
+				if (node.hash == hash && key.equals(node.key))
+					return node;
+				node = node.next;
+			}
+			while (node != null);
+		}
 		return null;
 	}
 
@@ -115,6 +145,7 @@ public class HashMap<K,V> implements Map<K,V> {
 		if (table[index] == null)
 			table[index] = new Node<K, V>(hash, key, value, null);
 		else {
+			// 散列冲突
 			Node<K,V> node = table[index], cur, next = node;
 			do {
 				cur = next;
@@ -133,17 +164,42 @@ public class HashMap<K,V> implements Map<K,V> {
 
 	@Override
 	public V remove(Object key) {
+		int hash = hash(key);
+		int index = (capacity - 1) & hash;
+		if (table[index] != null) {
+			Node<K,V> node = table[index], pre = node;
+			do {
+				if (node.hash == hash && key.equals(node.key)) {
+					size--;
+					if (node == table[index]) {
+						table[index] = null;
+						break;
+					}
+					else {
+						pre.next = node.next;
+						return node.value;
+					}
+				}
+				pre = node;
+				node = node.next;
+			}
+			while (node != null);
+		}
 		return null;
 	}
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		
+		m.forEach((key, value) -> put(key, value));
 	}
 
 	@Override
 	public void clear() {
-		
+        if (table != null && size > 0) {
+            size = 0;
+            for (int i = 0; i < table.length; i++)
+				table[i] = null;
+        }
 	}
 
 	@Override
