@@ -48,7 +48,7 @@ public class HashMap<K,V> implements Map<K,V> {
 			if (key != null) {
 				Node<K,V> node = this;
 				do {
-					if (node.hash == hash && node.key.equals(key))
+					if (node.key == key || node.hash == hash && node.key.equals(key))
 						return node;
 				} while ((node = node.next) != null);
 			}
@@ -149,7 +149,7 @@ public class HashMap<K,V> implements Map<K,V> {
 			Node<K,V> node = table[index], cur, next = node;
 			do {
 				cur = next;
-				if ((cur.hash == hash) && cur.key.equals(key)) {
+				if (cur.key == key || cur.hash == hash && cur.key.equals(key)) {
 					V oldValue = cur.value;
 					cur.value = value;
 					return oldValue;
@@ -169,7 +169,7 @@ public class HashMap<K,V> implements Map<K,V> {
 		if (table[index] != null) {
 			Node<K,V> node = table[index], pre = node;
 			do {
-				if (node.hash == hash && key.equals(node.key)) {
+				if (node.key == key || node.hash == hash && key.equals(node.key)) {
 					size--;
 					if (node == table[index]) {
 						table[index] = null;
