@@ -40,11 +40,9 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, Cloneable 
     }
 
     private void ensureCapacity(int minCapacity) {
-        grow(calculateCapacity(minCapacity));
-    }
-
-    private int calculateCapacity(int minCapacity) {
-        return (data == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) ? Math.max(DEFAULT_CAPACITY, minCapacity) : minCapacity;
+        int cap = (data == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) ? Math.max(DEFAULT_CAPACITY, minCapacity) : minCapacity;
+        if (cap > data.length)
+            grow(cap);
     }
 
     private void grow(int minCapacity) {
