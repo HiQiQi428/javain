@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>1</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/luncert/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h3 class="mume-header" id="1hashmap%E5%92%8Cconcurrenthashmap%E7%9A%84%E5%8C%BA%E5%88%AB">1.HashMap和ConcurrentHashMap的区别</h3>
+
+<p>ConcurrentHashMap通过分段锁支持并发,而HashMap只有通过modCount来检测并发修改,并不能支持并发操作.HashMap的synchronized版本<br>
+!!!</p>
+<h3 class="mume-header" id="2hashmap%E5%86%85%E9%83%A8%E5%85%B7%E4%BD%93%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84">2.HashMap内部具体如何实现的</h3>
+
+<p>HashMap用Node数组存储数据,Node是Map.Entry的实现,通过Node中的next字段实现一个链表,用于存储Hash冲突的数据.HashMap通过异或key.hashCode的高16位和低16位获取key哈希值,再用这个哈希值去获取元素在Node数组中的索引,通过索引获取到链表实现的桶,然后遍历桶找到目标元素,进行get或put操作.</p>
+<h3 class="mume-header" id="3%E5%A6%82%E6%9E%9Chashmap%E7%9A%84key%E6%98%AF%E4%B8%80%E4%B8%AA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E6%80%8E%E4%B9%88%E5%8A%9E">3.如果hashMap的key是一个自定义的类，怎么办</h3>
+
+<p>重写自定义类的equals和hashCode方法</p>
+<h3 class="mume-header" id="4%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals%E8%BF%98%E8%A6%81%E9%87%8D%E5%86%99hashcode">4.为什么重写equals还要重写hashcode</h3>
+
+<p>因为HashMap根据key查找元素时有这样的判断:<code>if (node.key == key || node.hash == hash &amp;&amp; node.key.equals(key))</code>,这里node.hash和hash两个变量都是通过key.hashCode生成的.</p>
+<h3 class="mume-header" id="5arraylist%E5%92%8Clinkedlist%E7%9A%84%E5%8C%BA%E5%88%AB%E5%A6%82%E6%9E%9C%E4%B8%80%E7%9B%B4%E5%9C%A8list%E7%9A%84%E5%B0%BE%E9%83%A8%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0%E7%94%A8%E5%93%AA%E4%B8%AA%E6%95%88%E7%8E%87%E9%AB%98">5.ArrayList和LinkedList的区别，如果一直在list的尾部添加元素，用哪个效率高？</h3>
+
+<p>ArrayList用Object[]存储数据,每次添加数据前检查容量,如果容量不够根据策略计算需要的容量,然后创建新数组将原来的数据拷贝到新数组中.而LinkedList通过双向列表存储数据,每次尾部添加数据都要修改节点关系,但没有扩容操作.对ArrayList在容量增长初期,由于需要拷贝的数据少,扩容付出的时间代价小,通过索引添加数据较LinkedList更快.在容量增长后期,每次扩容都要拷贝一个大数组,付出的时间大,这时LinkedList效率更高.</p>
+<h3 class="mume-header" id="6%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bsyncronized%E9%94%81-%E5%A6%82%E6%9E%9C%E7%94%A8%E8%BF%99%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E4%BF%AE%E9%A5%B0%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E9%94%81%E4%BD%8F%E4%BA%86%E4%BB%80%E4%B9%88%E5%A6%82%E6%9E%9C%E4%BF%AE%E9%A5%B0%E6%88%90%E5%91%98%E6%96%B9%E6%B3%95%E9%94%81%E4%BD%8F%E4%BA%86%E4%BB%80%E4%B9%88">6.介绍一下Syncronized锁。如果用这个关键字修饰一个静态方法，锁住了什么？如果修饰成员方法，锁住了什么？</h3>
+
+<p>synchronized是最基本的互斥同步手段,其对应字节码:monitorenter和monitorexit,这两个字节码都需要一个reference类型的参数来指明要锁定的和解锁的对象.<br>
+synchronized是相同线程可重入的,每进入一次锁计数器加1,考虑在同一条线程的synchronized块中递归.<br>
+synchronized导致的线程阻塞和唤醒会造成内核态与用户态的切换,所以synchronized是一个重量级操作.<br>
+ReetrantLock相比synchronized多了:等待可中断,可实现公平锁,锁可绑定多个条件.</p>
+<ul>
+<li>普通同步方法,锁是当前实例对象</li>
+<li>静态同步方法,锁是当前类的class对象</li>
+<li>同步方法块,锁是括号里面的对象</li>
+</ul>
+<h3 class="mume-header" id="7%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bvolatile">7.介绍一下volatile</h3>
+
+<p>volatile是JVM提供的最轻量级的同步机制,将变量定义为volatile后,它具备两种特性:</p>
+<h5 class="mume-header" id="1%E4%BF%9D%E8%AF%81%E5%8F%98%E9%87%8F%E5%8F%AF%E8%A7%81%E6%80%A7%E5%8D%B3%E5%BD%93%E4%B8%80%E6%9D%A1%E7%BA%BF%E7%A8%8B%E4%BF%AE%E6%94%B9%E4%BA%86%E8%BF%99%E4%B8%AA%E5%8F%98%E9%87%8F%E7%9A%84%E5%80%BC%E6%96%B0%E5%80%BC%E5%AF%B9%E4%BA%8E%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E6%9D%A5%E8%AF%B4%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%AB%8B%E5%8D%B3%E5%BE%97%E7%9F%A5%E7%9A%84">1.保证变量可见性:即当一条线程修改了这个变量的值,新值对于其他线程来说是可以立即得知的.</h5>
+
+<p>执行引擎在使用volatile变量前先进行刷新,所以执行引擎看不到不一致的情况.<br>
+但是基于volatile变量的运算在并发下并不是安全的.因为Java的运算并非原子操作,即在变量使用过程中可能出现值过期的情况,有如下代码:</p>
+<pre class="language-text">public class TestVolatile {
+    volatile int a = 1;
+    void increase() {
+        a++;
+    }
+}
+</pre>
+<p>代码编译后的increase方法:</p>
+<pre class="language-text">
+0:  getstatic
+1:  iconst_1
+2:  iadd
+3:  putstatic
+4:  return
+</pre>
+<p>在执行iconst_1和iadd这些指令时,可能已经有其他线程改变了a并写回了主内存,这时当前线程栈顶值就已经过期了(一条字节码本身可能被编译成多条机器指令).<br>
+volatile使用场景:</p>
+<ul>
+<li>运算结果不依赖变量的当前值,或者能保证只有单一线程修改变量的值</li>
+<li>变量不需要与其他的状态变量共同参与不变约束</li>
+</ul>
+<h5 class="mume-header" id="2%E7%A6%81%E6%AD%A2%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E5%BA%8F%E4%BC%98%E5%8C%96">2.禁止指令重排序优化</h5>
+
+<p>普通变量仅仅保证在所有依赖赋值结果的地方都能获取到正确的结果,而不能保证变量赋值操作顺序与程序代码中的执行顺序一致.举例,如果一个线程共享的信号变量没有volatile修饰,可能由于指令重排序导致某个赋值操作提前执行,结果是其他线程提前接收到信号.</p>
+<h3 class="mume-header" id="8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%AD%E7%9A%84i%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88">8.多线程中的i++线程安全吗？为什么？</h3>
+
+<p>不安全.假设i是一个volatile变量,那么在每次有线程执行i++时对先从主内存获取i的最新值,然后进行运算,由于运算非原子性,在运算过程中可能有其他线程已经修改过i,导致当前线程工作内存中的i值已经过期,所以i++不是线程安全的.如果i只是普通变量,连使用前刷新都没有,那就更不是线程安全的了.</p>
+<h3 class="mume-header" id="9%E5%A6%82%E4%BD%95%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%AE%A1%E6%95%B0%E5%99%A8">9.如何线程安全的实现一个计数器？</h3>
+
+<p>一是用synchronized实现计数方法的互斥访问,一是用AtomicInteger进行计数</p>
+<h3 class="mume-header" id="10%E8%AE%B2%E4%B8%80%E4%B8%8Btcp%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%92%8C%E9%87%8A%E6%94%BE%E8%BF%9E%E6%8E%A5">10.讲一下TCP的连接和释放连接。</h3>
+
+<p><a href="https://www.cnblogs.com/newwy/p/3234536.html">https://www.cnblogs.com/newwy/p/3234536.html</a></p>
+<h5 class="mume-header" id="1%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5">1.建立连接</h5>
+
+<p>主机B运行一个服务器进程,发出一个被动打开命令,告诉它的TCP要准备接收客户进程的连续请求,然后服务进程就处于监听状态,不断检测是否有客户进程发起连续请求.客户进程运行在主机A中,先向自己的TCP发出主动打开的命令,表明要向某个IP地址的某个端口建立运输连接,详细过程为:</p>
+<ul>
+<li>1.主机A向主机B发出连接请求报文段,其同步比特syn=1,同时选择一个序号seq=x表明期待接受的数据字节序号;</li>
+<li>2.主机B收到连接请求报文段后,如果同意,则发回确认报文,其同步比特syn=1,确认号ack=x+1,也发送一个期待数据字节序号seq=y;</li>
+<li>3.主机A收到确认报文后,也发送一个确认报文,确认号为ack=y+1;</li>
+<li>4.主机A和B的TCP通知上层应用进程,连接建立.</li>
+</ul>
+<h5 class="mume-header" id="2%E9%87%8A%E6%94%BE%E8%BF%9E%E6%8E%A5">2.释放连接</h5>
+
+<ul>
+<li>1.数据传输结束后,主机A的应用进程先向其TCP发出释放连接请求,不再发送数据.TCP发送释放连接报文给主机B,FIN=1,seq=u(已传送数据的最后一个字节的序号+1);</li>
+<li>2.主机B的TCP收到释放连接通知后发出确认报文,seq=u+1,同时通知应用进程,这样A到B的连接就释放了.这时连接处于半关闭状态,主机B不再接收主机A发来的数据,但主机B还在向主机A发送数据,主机A若正确接受数据仍需要发送确认;</li>
+<li>3.主机B向主机A发送数据结束后,其应用进程就通知TCP释放连接.主机B的连接释放报文置FIN=1,seq=w=前面传送过的数据的最后一个字节的序号+1,ack=u+1;</li>
+<li>4.主机A对主机B的连接释放报文发出确认,ACK=1,ack=w+1,seq=u+1,这样B到A的连接就释放了,主机A的TCP再想其应用进程报告连接已经全部释放.</li>
+</ul>
+<h3 class="mume-header" id="11%E8%AE%B2%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E6%8E%A5%E6%94%B6%E5%88%B0%E4%B8%80%E4%B8%AAurl%E5%88%B0%E6%9C%80%E5%90%8E%E5%B1%95%E7%A4%BA%E5%87%BA%E9%A1%B5%E9%9D%A2%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B%E8%BF%87%E7%A8%8B">11.讲一下浏览器从接收到一个URL到最后展示出页面，经历了哪些过程。</h3>
+
+<ul>
+<li>浏览器发送HTTP报文,报文包含URL解析出的主机名,访问路径和参数.</li>
+<li>通过DNS服务器查询主机名对应的IP地址,然后与服务器建立TCP连接,再发送HTTP报文到服务器;</li>
+<li>服务器与客户端建立连接后,TCP接受到HTTP报文,提交给上层服务器应用程序,这里拿tomcat举例.tomcat解析HTTP报文构造HttpRequest对象,根据访问路径匹配servlet,由servlet处理,然后发送HTTP响应报文;</li>
+<li>客户端收到HTTP响应报文,解析响应报文的html对象中的资源引用,对这些资源引用首先查询web缓存,如果不在缓存中则发送一个HTTP请求报文请求对应资源;如果存在缓存中发送一个HEAD方法的HTTP报文比较服务器对应资源的最后更新时间,如果缓存资源已过期则再发送请求报文重新加载资源,不然则直接使用本地缓存;</li>
+</ul>
+<h3 class="mume-header" id="12%E9%95%BF%E8%BF%9E%E6%8E%A5%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84">12.长连接怎么实现的</h3>
+
+<p>HTTP/1.1起默认使用长连接,在HTTP响应头加入<code>Connection:keep-alive</code>,当一个网页打开完成后,TCP连接不会关闭,客户端后续的访问会继续使用这一条连接.但连接不会用就保持,它有一个保持时间.</p>
+<h3 class="mume-header" id="13gc%E5%B7%A5%E5%85%B7%E7%94%A8%E8%BF%87%E5%93%AA%E4%BA%9B">13.GC工具用过哪些？</h3>
+
+<p><b>JConsole和JvisualVM</b><br>
+!!!</p>
+<h3 class="mume-header" id="14%E8%AE%B2%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E5%8F%AF%E4%BB%A5%E5%BD%B1%E5%93%8D%E5%88%B0%E6%96%B0%E7%94%9F%E4%BB%A3%E7%9A%84%E5%9B%9E%E6%94%B6%E9%80%9F%E5%BA%A6">14.讲一下什么情况可以影响到新生代的回收速度。</h3>
+
+<p>可能在存活对象比较多的情况下,Survivor空间不足,需要移动对象到老年代.<br>
+!!!</p>
+<h3 class="mume-header" id="15jvm%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9B%9E%E6%94%B6%E9%80%9F%E5%BA%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94%E6%96%B0%E7%94%9F%E4%BB%A3%E6%85%A2%E5%BE%88%E5%A4%9A%E5%BE%88%E5%A4%9A">15.JVM老年代回收速度为什么比新生代慢很多很多？</h3>
+
+<h5 class="mume-header" id="1%E5%88%86%E7%B1%BB">1.分类</h5>
+
+<p>GC分为Yong GC,Old GC,MIXED GC,Full GC几种,也有分为Minor GC,Major GC,Full GC的.</p>
+<h5 class="mume-header" id="2%E5%88%86%E5%B7%A5">2.分工</h5>
+
+<p>Yong GC回收新生代.<br>
+Old GC回收老年代,个别JVM参数配置设置了Old GC之前必须执行一次Yong GC.<br>
+MIXED GC回收新生代和老年代,G1回收算法.<br>
+Full GC回收新生代,老年代,元数据区(永久代).</p>
+<h5 class="mume-header" id="3%E4%B8%BA%E4%BB%80%E4%B9%88full-gc%E6%AF%94yong-gc%E5%92%8Cold-gc%E6%85%A2">3.为什么Full GC比Yong GC和Old GC慢?</h5>
+
+<ul>
+<li>虚拟机规范中Class回收条件苛刻,永生代回收算法效率低</li>
+<li>多回收了方法区,增加了总回收耗时</li>
+<li>Full GC本身不会先进行Minor GC,而老年代许多对象都会引用到新生代的对象,先进性一次Minor GC可以提高老年代GC速度(G1除外)</li>
+<li>G1发生了concurrent mode fail后退化成了单线程回收整个堆.</li>
+</ul>
+<h5 class="mume-header" id="4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%95%88%E7%8E%87%E6%AF%94%E6%96%B0%E7%94%9F%E4%BB%A3%E4%BD%8E%E5%BE%88%E5%A4%9A">4.为什么老年代垃圾回收效率比新生代低很多?</h5>
+
+<ul>
+<li>从并行和并发机制,并行和并发的默认线程数上可以看出,-XX:ConcGCThreads=(-XX:ParallelGCThreads + 3) / 4</li>
+<li>新生代复制算法比较快,Eden区回收时直接全部清空,存活对象存放到内存容量比较小的Survivor,少了内存碎片整理,加上直接copy的速度,效率很高.以空间换时间.</li>
+<li>卡表数据结构,卡表为一个比特位的集合,卡表中每一位表示老年代4KB的空间,每一个比特位可以用来表示老年代某一区域中的所有对象是否持有新生代对象的引用.这样新生代GC时不用花大量时间扫描所有老年代对象来确定每一个对象的引用关系,只需要扫描卡表标记位为1的区域.</li>
+<li>老年代MS算法会导致内存碎片化,因此引入MC算法,执行完毕后,存活的对象会按序放置,移动对象的内存地址,来解决碎片化,但执行时间较长.时间换空间.</li>
+<li>老年代内存容量一般较大,回收需要预留比较大的空间,这样内存利用率就低.</li>
+</ul>
+<h3 class="mume-header" id="16%E5%A6%82%E4%BD%95%E5%9B%9E%E6%94%B6%E5%A0%86%E5%A4%96%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98">16.如何回收堆外直接内存?</h3>
+
+<p>JVM使用一个后台线程,通过虚引用遍历堆中已经被回收的对象对直接内存的直接引用,显式地调用free()方法释放直接内存,Full GC不能直接释放堆外直接内存,堆外直接内存的释放和GC方式无关.</p>
+<h3 class="mume-header" id="17%E5%86%99sql%E6%89%BE%E5%87%BA%E6%AF%8F%E4%B8%AA%E5%9F%8E%E5%B8%82%E7%9A%84%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95">17.写SQL：找出每个城市的最新一条记录</h3>
+
+<blockquote>
+<p>id 城市 人口 信息 创建时间<br>
+1 北京 100 info1 时间戳<br>
+2 北京 100 info2 时间戳<br>
+3 上海 100 info3 时间戳<br>
+4 上海 100 info4 时间戳</p>
+</blockquote>
+<pre class="language-text">select * from
+record as r1 
+join (select city, max(timestamp) as timestamp from record group by city) as r2
+on r1.city = r2.city and r1.timestamp = r2.timestamp;
+</pre>
+<h3 class="mume-header" id="18%E7%BC%96%E7%A8%8B%E9%A2%98%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E5%8C%85%E6%8B%AC%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9">18.编程题：写一个函数，找到一个文件夹下所有文件，包括子文件夹。</h3>
+
+<pre class="language-text">private void ergodic(String path) {
+    File base = new File(path);
+    if (!base.exists())
+        throw new IllegalArgumentException();
+    if (base.isDirectory())
+        ergodic(base, 0);
+    else
+        System.out.println(base.getName());
+}
+
+public void ergodic(File base, int depth) { 
+    for (int i = 0; i &lt; depth; i++)
+        System.out.print(&#x27; &#x27;);
+    System.out.println(base.getName());
+    if (base.isDirectory()) {
+        for (File file : base.listFiles())
+            ergodic(file, depth + 2);
+    }
+}
+</pre>
+<h3 class="mume-header" id="19%E6%B7%98%E5%AE%9D%E7%9A%84%E7%9B%AE%E5%BD%95%E6%A0%91%E8%AE%BE%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%A1%A8%E5%92%8C%E5%AD%97%E6%AE%B5">19.淘宝的目录树，设计数据库的表和字段</h3>
+
+<h3 class="mume-header" id="21%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8springboot%E6%A1%86%E6%9E%B6">21.为什么选用springboot框架？</h3>
+
+<h3 class="mume-header" id="23springboot%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81%E7%9C%8B%E8%BF%87%E5%90%97hashmap%E7%9A%84%E6%BA%90%E7%A0%81%E7%9C%8B%E8%BF%87%E5%90%97">23.springboot框架源码看过吗？hashMap的源码看过吗？</h3>
+
+<h3 class="mume-header" id="24%E5%AD%A6%E4%B9%A0%E4%B8%AD%E9%81%87%E8%A7%81%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E8%AE%A9%E4%BD%A0%E6%84%9F%E8%A7%89%E5%8D%B0%E8%B1%A1%E6%9C%80%E6%B7%B1%E5%88%BB">24.学习中遇见了什么问题让你感觉印象最深刻？</h3>
+
+<h3 class="mume-header" id="25%E6%83%85%E6%99%AF%E9%A2%98%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E5%A4%96%E5%8D%96%E9%85%8D%E9%80%81%E5%8D%95%E5%AD%90%E8%A6%81%E5%8F%91%E5%B8%83%E7%8E%B0%E5%9C%A8%E6%9C%89200%E4%B8%AA%E9%AA%91%E6%89%8B%E9%83%BD%E6%83%B3%E8%A6%81%E6%8E%A5%E8%BF%99%E4%B8%80%E5%8D%95%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E9%AA%91%E6%89%8B%E6%8E%A5%E5%88%B0%E5%8D%95%E5%AD%90">25.情景题：如果一个外卖配送单子要发布，现在有200个骑手都想要接这一单，如何保证只有一个骑手接到单子？</h3>
+
+<p>为订单表添加状态字段,标识订单是否已被接,在第一个骑手接单后,修改订单状态.基于数据库的ACID特性,可以保证只有这一个骑手接到单.</p>
+<h3 class="mume-header" id="26%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8">26.分布式集群中如何保证线程安全？</h3>
+
+<p><a href="https://blog.csdn.net/cutesource/article/details/5791350">https://blog.csdn.net/cutesource/article/details/5791350</a><br>
+！！！</p>
+<h3 class="mume-header" id="27%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Btcp%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E6%AF%8F%E6%AC%A1%E5%8F%91%E9%80%81%E4%BA%86%E4%BB%80%E4%B9%88%E4%BF%A1%E5%8F%B7%E5%A6%82%E6%9E%9C%E5%8E%BB%E6%8E%89%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BC%9A%E6%80%8E%E6%A0%B7">27.介绍一下TCP的三次握手？每次发送了什么信号？如果去掉最后一次握手会怎样？</h3>
+
+<p>第一次SYN=1,seq=x<br>
+第二次SYN=1,ACK=1,ack=x+1,seq=y<br>
+第三次SYN=1,ACK=1,ack=y+1,seq=x+1<br>
+如果去掉最后一次握手,服务器将无法得知是否客户机接受到了连接响应报文,即无法得知连接是否建立成功,也就无法进行后续的数据传输了.</p>
+<h3 class="mume-header" id="28tcp%E5%8D%8F%E8%AE%AE%E5%9C%A8%E5%93%AA%E4%B8%80%E5%B1%82ip%E5%8D%8F%E8%AE%AE%E5%9C%A8%E9%82%A3%E4%B8%80%E5%B1%82http%E5%9C%A8%E5%93%AA%E4%B8%80%E5%B1%82">28.TCP协议在哪一层？IP协议在那一层？HTTP在哪一层？</h3>
+
+<p>TCP在传输层,IP在网络层,HTTP在应用层.</p>
+<h3 class="mume-header" id="29%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8innodb%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8myisam">29.数据库索引介绍一下。介绍一下什么时候用Innodb什么时候用MyISAM。</h3>
+
+<p><a href="https://www.cnblogs.com/zlcxbb/p/5757245.html">https://www.cnblogs.com/zlcxbb/p/5757245.html</a><br>
+MySQL主要有四种类型的索引:B-Tree索引,Hash索引,Fulltext索引和R-Tree索引.<br>
+B-Tree索引是MySQL数据库中使用最频繁的索引类型,所有实际需要的数据都存放于Tree的Leaf Node,而且到任何一个Leaf Node的最短路径的长度都是相同的.<br>
+Innodb存储引擎的B-Tree索引实际使用的存储结构是B+Tree,在每个Leaf Node上面除了存放索引键的相关信息外,还存储了指向该Leaf Node相邻后一个Leaf Node的指针.</p>
+<h3 class="mume-header" id="30%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95">30.介绍一下聚簇索引和非聚簇索引</h3>
+
+<p>聚簇索引如Innodb索引和数据一体,B+Tree的Leaf Node存放的是数据记录本身,而不是记录地址,而索引和数据分离的方式既是非聚簇索引.</p>
+<h3 class="mume-header" id="32%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">32.知道什么设计模式</h3>
+
+<p>接口模式，职责型模式，构造型模式，操作型模式，扩展型模式</p>
+<h3 class="mume-header" id="33%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E6%87%92%E6%B1%89%E5%BC%8F%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8D%95%E4%BE%8B">33.介绍一下单例模式？懒汉式的单例模式如何实现单例？</h3>
+
+<p>单例模式即一个类加载后只会存在一个实例.懒汉式单例模式可以在获取实例时,判断实例句柄是否为NULL,然后决定是否进行一次初始化.在并发情景下,可以是用DCL单例模式,即在判断实例句柄为NULL后,加锁重新判断,以避免其他线程已经初始化获得了实例.不过我偶然在网上看到过一篇对DCL问题得探讨,即有可能其他线程正在初始化类,这时当前线程发现了变化,判断句柄不为空,导致返回未初始化完得实例,这种情况可以将初始化操作中涉及赋值操作得变量声明为final或者volatile.<br>
+思考:并发情景下初始化一个类,调用其构造函数也是多线程的吧,但是将对象赋值给对象引用不应该一定在构造结束之后吗?对想究竟如何初始化的,了解一下!</p>
+<h3 class="mume-header" id="34%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F">34.介绍一下策略模式</h3>
+
+<p>把可互换的方法封装在各自独立的类中，并且让每个方法都实现一个公共的操作。</p>
+<ul>
+<li>策略模式是对算法的包装，是把使用算法的责任和算法本身分割开来，委派给不同的对象管理。策略模式通常把一个系列的算法包装到一系列的策略类里面，作为一个抽象策略类的子类</li>
+<li>重心：策略模式的重心不是如何实现算法，而是如何组织、调用这些算法，从而让程序结构更加灵活，具有更好的维护性和扩展i性</li>
+<li>平等性：各个策略的平等性，是的算法之间可以相互替换，所有算法的实现上也应该是相互独立的，没有相互依赖的</li>
+<li>唯一性：每一个时刻只能使用一个具体的策略实现对象</li>
+<li>共有行为：所有具体策略类都有一些公有的行为，这些行为被抽象到抽象策略角色Strategy类中</li>
+</ul>
+
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>
