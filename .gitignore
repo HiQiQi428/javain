@@ -1,5 +1,5 @@
-pre1/.vscode
-pre1/.settings
-pre1/target
-pre1/.classpath
-pre1/.project
+pre*/.vscode
+pre*/.settings
+pre*/target
+pre*/.classpath
+pre*/.project
