@@ -18,13 +18,12 @@ public class TestBlockList {
         list.add(100);
         list.add(101);
         list.add(0, 999);
-        System.out.println(list.prettyString());
         System.out.println(list.set(100, 1000));
         System.out.println(list.get(100));
         System.out.println(list.indexOf(1000));
-        System.out.println("Block Size: " + list.getBlockSize());
-        System.out.println("Elem Size: " + list.getElemSize());
-        System.out.println("Space Size: " + list.getSpace());
-        System.out.println("Space Usage: " + list.getUsage() + '%');
+        System.out.println(list.prettyString());
+        for (Integer i : list) {
+            System.out.println(i);
+        }
     }
 }

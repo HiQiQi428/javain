@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class BlockList<E> implements List<E> {
 
@@ -14,7 +15,7 @@ public class BlockList<E> implements List<E> {
     int elemSize;
     int opacity;
 
-    final static class Block {
+    private final static class Block {
         Object[] data;
         int opacity;
         int size;
@@ -27,8 +28,6 @@ public class BlockList<E> implements List<E> {
             data = new Object[this.opacity];
         }
         boolean isFull() { return size == data.length; }
-        boolean almostFull() { return size == data.length - 1; }
-        boolean isEmpty() { return size == 0; }
         void add(Object e) { data[size++] = e; }
         void add(int index, Object e) {
             if (size == opacity) {
@@ -47,7 +46,7 @@ public class BlockList<E> implements List<E> {
         }
     }
 
-    final static class Index {
+    private final static class Index {
         int base;
         int offset;
         Index(int base, int offset) {
@@ -83,22 +82,6 @@ public class BlockList<E> implements List<E> {
     }
 
     /**
-     * 寻找index指向的block
-     * @param index
-     * @return 包含指定块和块内偏移
-     */
-    private Index findBlock(int index) {
-        if (index >= elemSize || index < 0)
-            throw new IndexOutOfBoundsException("index: " + index);
-        for (int i = 0, total = 0; i < blockSize; i++) {
-            total += blocks[i].opacity;
-            if (total > index)
-                return new Index(i, index - (total - blocks[i].opacity - 1));
-        }
-        return null;
-    }
-
-    /**
      * @param o
      * @return
      */
@@ -127,16 +110,27 @@ public class BlockList<E> implements List<E> {
         return null;
     }
 
+    /**
+     * 寻找index指向的block
+     * @param index
+     * @return 包含指定块和块内偏移
+     */
+    private Index findBlock(int index) {
+        if (index >= elemSize || index < 0)
+            throw new IndexOutOfBoundsException("index: " + index);
+        for (int i = 0, total = 0; i < blockSize; i++) {
+            total += blocks[i].size;
+            if (total > index)
+                return new Index(i, index - (total - blocks[i].size));
+        }
+        return null;
+    }
+
     public int size() { return elemSize; }
 
     public boolean isEmpty() { return blockSize == 0; }
 
     public boolean contains(Object o) { return findBlock(o) != null; }
-
-    
-    public Iterator<E> iterator() {
-        return null;
-    }
 
     /**
      * @return Object[]
@@ -181,11 +175,16 @@ public class BlockList<E> implements List<E> {
         return true;
     }
 
+    private void add(Index index, E e) {
+        blocks[index.base].add(index.offset, e);
+        elemSize++;
+    }
+
     public void add(int index, E element) {
         opacityAdjust();
         Index i = findBlock(index);
-        blocks[i.base].add(i.offset, element);
-        elemSize++;
+        if (i != null)
+            add(i, element);
     }
 
     /**
@@ -224,7 +223,51 @@ public class BlockList<E> implements List<E> {
         Index i = findBlock(index);
         return i != null ? remove(i) : null;
     }
+    
+    public void clear() { init(); }
 
+    /**
+     * @param index
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public E get(int index) {
+        Index i = findBlock(index);
+        return i != null ? (E) blocks[i.base].data[i.offset] : null;
+    }
+
+    @SuppressWarnings("unchecked")
+    private E set(Index i, E e) {
+        Block block = blocks[i.base];
+        E oldValue = (E) block.data[i.offset];
+        block.data[i.offset] = e;
+        return oldValue;
+    }
+    
+    /**
+     * @param index
+     * @param element
+     * @return
+     */
+    public E set(int index, E element) {
+        Index i = findBlock(index);
+        return i != null ? set(i, element) : null;
+    }
+    
+    /**
+     * @param o
+     * @return
+     */
+    public int indexOf(Object o) {
+        Index i = findBlock(o);
+        return i.base * (i.base + 1) / 2 * BLOCK_OPACITY + i.offset;
+    }
+
+    
+    public int lastIndexOf(Object o) {
+        Index i = lastFindBlock(o);
+        return i.base * (i.base + 1) / 2 * BLOCK_OPACITY + i.offset;
+    }
     
     public boolean containsAll(Collection<?> c) {
         return false;
@@ -248,67 +291,6 @@ public class BlockList<E> implements List<E> {
     
     public boolean retainAll(Collection<?> c) {
         return false;
-    }
-
-    
-    public void clear() { init(); }
-
-    /**
-     * @param index
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public E get(int index) {
-        Index i = findBlock(index);
-        return i != null ? (E) blocks[i.base].data[i.offset] : null;
-    }
-
-    
-    /**
-     * @param index
-     * @param element
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public E set(int index, E element) {
-        Index i = findBlock(index);
-        if (i != null) {
-            Block block = blocks[i.base];
-            E oldValue = (E) block.data[i.offset];
-            block.data[i.offset] = element;
-            return oldValue;
-        }
-        return null;
-    }
-    
-    /**
-     * @param o
-     * @return
-     */
-    public int indexOf(Object o) {
-        Index i = findBlock(o);
-        return i.base * (i.base + 1) / 2 * BLOCK_OPACITY + i.offset;
-    }
-
-    
-    public int lastIndexOf(Object o) {
-        Index i = lastFindBlock(o);
-        return i.base * (i.base + 1) / 2 * BLOCK_OPACITY + i.offset;
-    }
-
-    
-    public ListIterator<E> listIterator() {
-        return null;
-    }
-
-    
-    public ListIterator<E> listIterator(int index) {
-        return null;
-    }
-
-    
-	public List<E> subList(int fromIndex, int toIndex) {
-		return null;
     }
     
     public String toString() {
@@ -349,5 +331,100 @@ public class BlockList<E> implements List<E> {
     }
 
     public double getUsage() { return (double) getElemSize() / getSpace(); }
+
+    public Iterator<E> iterator() { return new Itr(); }
+    
+    public ListIterator<E> listIterator() { return new ListItr(); }
+    
+    public ListIterator<E> listIterator(int index) {
+        return null;
+    }
+    
+	public List<E> subList(int fromIndex, int toIndex) {
+		return null;
+    }
+
+    private class Itr implements Iterator<E> {
+        Block block;
+        int base;
+        int offset;
+
+        Itr() {
+            block = blocks[base++];
+        }
+
+        public boolean hasNext() { return offset < block.size || base < blockSize; }
+
+        @SuppressWarnings("unchecked")
+        public E next() {
+            if (offset == block.size) {
+                if (base == blockSize)
+                    throw new NoSuchElementException();
+                block = blocks[base++];
+                offset = 0;
+            }
+            return (E) block.data[offset++];
+        }
+
+        public void remove() {
+            if (offset < block.size)
+                BlockList.this.remove(new Index(base - 1, offset));
+            else if (base < blockSize)
+                BlockList.this.remove(new Index(base++, (offset = 0)));
+            else
+                throw new NoSuchElementException();
+        }
+
+    }
+
+    private class ListItr extends Itr implements ListIterator<E> {
+
+        @Override
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        @Override
+        public E previous() {
+            return null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        /**
+         * 修改下一个元素的值,然后移动下标
+         */
+        public void set(E e) {
+            if (offset < block.size)
+                BlockList.this.set(new Index(base - 1, offset++), e);
+            else if (base < blockSize) {
+                offset = 0;
+                BlockList.this.set(new Index(base++, offset++), e);
+            }
+            else
+                throw new NoSuchElementException();
+        }
+
+        @Override
+        public void add(E e) {
+            if (offset < block.size)
+                BlockList.this.add(new Index(base - 1, offset++), e);
+            else if (base < blockSize) {
+                offset = 0;
+                BlockList.this.add(new Index(base++, offset++), e);
+            }
+            else
+                throw new NoSuchElementException();
+        }
+
+    }
 
 }
