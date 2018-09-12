@@ -16,17 +16,35 @@ public class BlockList<E> implements List<E> {
 
     final static class Block {
         Object[] data;
+        int opacity;
         int size;
         Block() {
-            data = new Object[BlockList.BLOCK_OPACITY];
+            opacity = BlockList.BLOCK_OPACITY;
+            data = new Object[opacity];
         }
         Block(int opacity) {
-            data = new Object[opacity > BlockList.BLOCK_OPACITY ? opacity : BlockList.BLOCK_OPACITY];
+            this.opacity = opacity > BlockList.BLOCK_OPACITY ? opacity : BlockList.BLOCK_OPACITY;
+            data = new Object[this.opacity];
         }
         boolean isFull() { return size == data.length; }
         boolean almostFull() { return size == data.length - 1; }
         boolean isEmpty() { return size == 0; }
         void add(Object e) { data[size++] = e; }
+        void add(int index, Object e) {
+            if (size == opacity) {
+                opacity += opacity >> 1;
+                Object[] tmp = new Object[opacity];
+                System.arraycopy(data, 0, tmp, 0, index);
+                tmp[index] = e;
+                System.arraycopy(data, index, tmp, index + 1, size - index);
+                data = tmp;
+            }
+            else {
+                System.arraycopy(data, index, data, index + 1, size - index - 1);
+                data[index] = e;
+            }
+            size++;
+        }
     }
 
     final static class Index {
@@ -72,11 +90,10 @@ public class BlockList<E> implements List<E> {
     private Index findBlock(int index) {
         if (index >= elemSize || index < 0)
             throw new IndexOutOfBoundsException("index: " + index);
-        for (int i = 0, tmp = 0, total = 0; i < blockSize; i++) {
-            tmp += 16;
-            total += tmp;
+        for (int i = 0, total = 0; i < blockSize; i++) {
+            total += blocks[i].opacity;
             if (total > index)
-                return new Index(i, index - (total - tmp - 1));
+                return new Index(i, index - (total - blocks[i].opacity - 1));
         }
         return null;
     }
@@ -167,6 +184,8 @@ public class BlockList<E> implements List<E> {
     public void add(int index, E element) {
         opacityAdjust();
         Index i = findBlock(index);
+        blocks[i.base].add(i.offset, element);
+        elemSize++;
     }
 
     /**
@@ -305,15 +324,13 @@ public class BlockList<E> implements List<E> {
 
     public String prettyString() {
         StringBuilder builder = new StringBuilder().append("BlockLists [\n");
-        int op = 16;
         Block block;
         for (int i = 0; i < blockSize; i++) {
             block = blocks[i];
-            builder.append("opacity: ").append(op).append(", elem: ");
+            builder.append("opacity: ").append(block.opacity).append(", elem: ");
             for (int j = 0; j < block.size; j++)
                 builder.append(block.data[j]).append(", ");
             builder.append('\n');
-            op += 16;
         }
         int i = builder.length();
         builder.replace(i - 3, i, "\n]");
@@ -324,7 +341,12 @@ public class BlockList<E> implements List<E> {
 
     public int getElemSize() { return elemSize; }
 
-    public int getSpace() { return blockSize * (blockSize + 1) / 2 * BLOCK_OPACITY; }
+    public int getSpace() {
+        int space = 0;
+        for (int i = 0; i < blockSize; i++)
+            space += blocks[i].opacity;
+        return space;
+    }
 
     public double getUsage() { return (double) getElemSize() / getSpace(); }
 

@@ -17,6 +17,7 @@ public class TestBlockList {
         list.remove(new Integer(45));
         list.add(100);
         list.add(101);
+        list.add(0, 999);
         System.out.println(list.prettyString());
         System.out.println(list.set(100, 1000));
         System.out.println(list.get(100));
